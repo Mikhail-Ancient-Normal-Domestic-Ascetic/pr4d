@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище NedvizhimostModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Deal">
+          <Key>
+            <PropertyRef Name="deal_id" />
+          </Key>
+          <Property Name="deal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="realtor" Type="int" />
+          <Property Name="property_id" Type="int" />
+          <Property Name="type_of_deal" Type="nvarchar" MaxLength="50" />
+          <Property Name="deal_date" Type="date" />
+        </EntityType>
+        <EntityType Name="DealEnd">
+          <Key>
+            <PropertyRef Name="dealEnd_id" />
+          </Key>
+          <Property Name="dealEnd_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="deal" Type="int" />
+          <Property Name="realtor" Type="int" />
+          <Property Name="dealEnd_date" Type="date" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="property" Type="int" />
+          <Property Name="date_payment" Type="date" />
+          <Property Name="sum" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="property_id" />
+          </Key>
+          <Property Name="property_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="int" />
+          <Property Name="cost" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PropertyType">
+          <Key>
+            <PropertyRef Name="propertyType_id" />
+          </Key>
+          <Property Name="propertyType_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Realtor">
+          <Key>
+            <PropertyRef Name="realtor_id" />
+          </Key>
+          <Property Name="realtor_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="sex" Type="int" />
+          <Property Name="phone" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="sex_id" />
+          </Key>
+          <Property Name="sex_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sex" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Deal__property_i__44FF419A">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Deal" Type="Self.Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="property_id" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="property_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Deal__realtor__440B1D61">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="Deal" Type="Self.Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="realtor_id" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DealEnd__deal__47DBAE45">
+          <End Role="Deal" Type="Self.Deal" Multiplicity="0..1" />
+          <End Role="DealEnd" Type="Self.DealEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deal">
+              <PropertyRef Name="deal_id" />
+            </Principal>
+            <Dependent Role="DealEnd">
+              <PropertyRef Name="deal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DealEnd__realtor__48CFD27E">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="DealEnd" Type="Self.DealEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="realtor_id" />
+            </Principal>
+            <Dependent Role="DealEnd">
+              <PropertyRef Name="realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payment__propert__412EB0B6">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="property_id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="property" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__type__398D8EEE">
+          <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="0..1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyType">
+              <PropertyRef Name="propertyType_id" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realtor__sex__3E52440B">
+          <End Role="Sex" Type="Self.Sex" Multiplicity="0..1" />
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="sex_id" />
+            </Principal>
+            <Dependent Role="Realtor">
+              <PropertyRef Name="sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище NedvizhimostModelContainer">
+          <EntitySet Name="Deal" EntityType="Self.Deal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DealEnd" EntityType="Self.DealEnd" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Property" EntityType="Self.Property" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PropertyType" EntityType="Self.PropertyType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Realtor" EntityType="Self.Realtor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sex" EntityType="Self.Sex" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Deal__property_i__44FF419A" Association="Self.FK__Deal__property_i__44FF419A">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Deal" EntitySet="Deal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deal__realtor__440B1D61" Association="Self.FK__Deal__realtor__440B1D61">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="Deal" EntitySet="Deal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DealEnd__deal__47DBAE45" Association="Self.FK__DealEnd__deal__47DBAE45">
+            <End Role="Deal" EntitySet="Deal" />
+            <End Role="DealEnd" EntitySet="DealEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DealEnd__realtor__48CFD27E" Association="Self.FK__DealEnd__realtor__48CFD27E">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="DealEnd" EntitySet="DealEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payment__propert__412EB0B6" Association="Self.FK__Payment__propert__412EB0B6">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__type__398D8EEE" Association="Self.FK__Property__type__398D8EEE">
+            <End Role="PropertyType" EntitySet="PropertyType" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realtor__sex__3E52440B" Association="Self.FK__Realtor__sex__3E52440B">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="Realtor" EntitySet="Realtor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NedvizhimostModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Deal">
+          <Key>
+            <PropertyRef Name="deal_id" />
+          </Key>
+          <Property Name="deal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="realtor" Type="Int32" />
+          <Property Name="property_id" Type="Int32" />
+          <Property Name="type_of_deal" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="deal_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Property" Relationship="Self.FK__Deal__property_i__44FF419A" FromRole="Deal" ToRole="Property" />
+          <NavigationProperty Name="Realtor1" Relationship="Self.FK__Deal__realtor__440B1D61" FromRole="Deal" ToRole="Realtor" />
+          <NavigationProperty Name="DealEnd" Relationship="Self.FK__DealEnd__deal__47DBAE45" FromRole="Deal" ToRole="DealEnd" />
+        </EntityType>
+        <EntityType Name="DealEnd">
+          <Key>
+            <PropertyRef Name="dealEnd_id" />
+          </Key>
+          <Property Name="dealEnd_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="deal" Type="Int32" />
+          <Property Name="realtor" Type="Int32" />
+          <Property Name="dealEnd_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Deal1" Relationship="Self.FK__DealEnd__deal__47DBAE45" FromRole="DealEnd" ToRole="Deal" />
+          <NavigationProperty Name="Realtor1" Relationship="Self.FK__DealEnd__realtor__48CFD27E" FromRole="DealEnd" ToRole="Realtor" />
+        </EntityType>
+        <EntityType Name="Payment">
+          <Key>
+            <PropertyRef Name="payment_id" />
+          </Key>
+          <Property Name="payment_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="property" Type="Int32" />
+          <Property Name="date_payment" Type="DateTime" Precision="0" />
+          <Property Name="sum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Property1" Relationship="Self.FK__Payment__propert__412EB0B6" FromRole="Payment" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Property">
+          <Key>
+            <PropertyRef Name="property_id" />
+          </Key>
+          <Property Name="property_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="cost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Deal" Relationship="Self.FK__Deal__property_i__44FF419A" FromRole="Property" ToRole="Deal" />
+          <NavigationProperty Name="Payment" Relationship="Self.FK__Payment__propert__412EB0B6" FromRole="Property" ToRole="Payment" />
+          <NavigationProperty Name="PropertyType" Relationship="Self.FK__Property__type__398D8EEE" FromRole="Property" ToRole="PropertyType" />
+        </EntityType>
+        <EntityType Name="PropertyType">
+          <Key>
+            <PropertyRef Name="propertyType_id" />
+          </Key>
+          <Property Name="propertyType_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Property" Relationship="Self.FK__Property__type__398D8EEE" FromRole="PropertyType" ToRole="Property" />
+        </EntityType>
+        <EntityType Name="Realtor">
+          <Key>
+            <PropertyRef Name="realtor_id" />
+          </Key>
+          <Property Name="realtor_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sex" Type="Int32" />
+          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Deal" Relationship="Self.FK__Deal__realtor__440B1D61" FromRole="Realtor" ToRole="Deal" />
+          <NavigationProperty Name="DealEnd" Relationship="Self.FK__DealEnd__realtor__48CFD27E" FromRole="Realtor" ToRole="DealEnd" />
+          <NavigationProperty Name="Sex1" Relationship="Self.FK__Realtor__sex__3E52440B" FromRole="Realtor" ToRole="Sex" />
+        </EntityType>
+        <EntityType Name="Sex">
+          <Key>
+            <PropertyRef Name="sex_id" />
+          </Key>
+          <Property Name="sex_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sex1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Realtor" Relationship="Self.FK__Realtor__sex__3E52440B" FromRole="Sex" ToRole="Realtor" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Deal__property_i__44FF419A">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Deal" Type="Self.Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="property_id" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="property_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Deal__realtor__440B1D61">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="Deal" Type="Self.Deal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="realtor_id" />
+            </Principal>
+            <Dependent Role="Deal">
+              <PropertyRef Name="realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DealEnd__deal__47DBAE45">
+          <End Role="Deal" Type="Self.Deal" Multiplicity="0..1" />
+          <End Role="DealEnd" Type="Self.DealEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deal">
+              <PropertyRef Name="deal_id" />
+            </Principal>
+            <Dependent Role="DealEnd">
+              <PropertyRef Name="deal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DealEnd__realtor__48CFD27E">
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="0..1" />
+          <End Role="DealEnd" Type="Self.DealEnd" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Realtor">
+              <PropertyRef Name="realtor_id" />
+            </Principal>
+            <Dependent Role="DealEnd">
+              <PropertyRef Name="realtor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Payment__propert__412EB0B6">
+          <End Role="Property" Type="Self.Property" Multiplicity="0..1" />
+          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Property">
+              <PropertyRef Name="property_id" />
+            </Principal>
+            <Dependent Role="Payment">
+              <PropertyRef Name="property" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Property__type__398D8EEE">
+          <End Role="PropertyType" Type="Self.PropertyType" Multiplicity="0..1" />
+          <End Role="Property" Type="Self.Property" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyType">
+              <PropertyRef Name="propertyType_id" />
+            </Principal>
+            <Dependent Role="Property">
+              <PropertyRef Name="type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realtor__sex__3E52440B">
+          <End Role="Sex" Type="Self.Sex" Multiplicity="0..1" />
+          <End Role="Realtor" Type="Self.Realtor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="sex_id" />
+            </Principal>
+            <Dependent Role="Realtor">
+              <PropertyRef Name="sex" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NedvizhimostEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Deal" EntityType="Self.Deal" />
+          <EntitySet Name="DealEnd" EntityType="Self.DealEnd" />
+          <EntitySet Name="Payment" EntityType="Self.Payment" />
+          <EntitySet Name="Property" EntityType="Self.Property" />
+          <EntitySet Name="PropertyType" EntityType="Self.PropertyType" />
+          <EntitySet Name="Realtor" EntityType="Self.Realtor" />
+          <EntitySet Name="Sex" EntityType="Self.Sex" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__Deal__property_i__44FF419A" Association="Self.FK__Deal__property_i__44FF419A">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Deal" EntitySet="Deal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Deal__realtor__440B1D61" Association="Self.FK__Deal__realtor__440B1D61">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="Deal" EntitySet="Deal" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DealEnd__deal__47DBAE45" Association="Self.FK__DealEnd__deal__47DBAE45">
+            <End Role="Deal" EntitySet="Deal" />
+            <End Role="DealEnd" EntitySet="DealEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DealEnd__realtor__48CFD27E" Association="Self.FK__DealEnd__realtor__48CFD27E">
+            <End Role="Realtor" EntitySet="Realtor" />
+            <End Role="DealEnd" EntitySet="DealEnd" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Payment__propert__412EB0B6" Association="Self.FK__Payment__propert__412EB0B6">
+            <End Role="Property" EntitySet="Property" />
+            <End Role="Payment" EntitySet="Payment" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Property__type__398D8EEE" Association="Self.FK__Property__type__398D8EEE">
+            <End Role="PropertyType" EntitySet="PropertyType" />
+            <End Role="Property" EntitySet="Property" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realtor__sex__3E52440B" Association="Self.FK__Realtor__sex__3E52440B">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="Realtor" EntitySet="Realtor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище NedvizhimostModelContainer" CdmEntityContainer="NedvizhimostEntities">
+          <EntitySetMapping Name="Deal">
+            <EntityTypeMapping TypeName="NedvizhimostModel.Deal">
+              <MappingFragment StoreEntitySet="Deal">
+                <ScalarProperty Name="deal_id" ColumnName="deal_id" />
+                <ScalarProperty Name="realtor" ColumnName="realtor" />
+                <ScalarProperty Name="property_id" ColumnName="property_id" />
+                <ScalarProperty Name="type_of_deal" ColumnName="type_of_deal" />
+                <ScalarProperty Name="deal_date" ColumnName="deal_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DealEnd">
+            <EntityTypeMapping TypeName="NedvizhimostModel.DealEnd">
+              <MappingFragment StoreEntitySet="DealEnd">
+                <ScalarProperty Name="dealEnd_id" ColumnName="dealEnd_id" />
+                <ScalarProperty Name="deal" ColumnName="deal" />
+                <ScalarProperty Name="realtor" ColumnName="realtor" />
+                <ScalarProperty Name="dealEnd_date" ColumnName="dealEnd_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Payment">
+            <EntityTypeMapping TypeName="NedvizhimostModel.Payment">
+              <MappingFragment StoreEntitySet="Payment">
+                <ScalarProperty Name="payment_id" ColumnName="payment_id" />
+                <ScalarProperty Name="property" ColumnName="property" />
+                <ScalarProperty Name="date_payment" ColumnName="date_payment" />
+                <ScalarProperty Name="sum" ColumnName="sum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Property">
+            <EntityTypeMapping TypeName="NedvizhimostModel.Property">
+              <MappingFragment StoreEntitySet="Property">
+                <ScalarProperty Name="property_id" ColumnName="property_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PropertyType">
+            <EntityTypeMapping TypeName="NedvizhimostModel.PropertyType">
+              <MappingFragment StoreEntitySet="PropertyType">
+                <ScalarProperty Name="propertyType_id" ColumnName="propertyType_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realtor">
+            <EntityTypeMapping TypeName="NedvizhimostModel.Realtor">
+              <MappingFragment StoreEntitySet="Realtor">
+                <ScalarProperty Name="realtor_id" ColumnName="realtor_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="sex" ColumnName="sex" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sex">
+            <EntityTypeMapping TypeName="NedvizhimostModel.Sex">
+              <MappingFragment StoreEntitySet="Sex">
+                <ScalarProperty Name="sex_id" ColumnName="sex_id" />
+                <ScalarProperty Name="sex1" ColumnName="sex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NedvizhimostModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

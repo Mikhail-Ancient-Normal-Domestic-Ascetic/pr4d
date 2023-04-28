@@ -1,0 +1,268 @@
+﻿<Window x:Class="pr4d.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pr4d"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="562" Width="1782">
+    <Grid Background="Chartreuse" Margin="0,0,0,-6" HorizontalAlignment="Center" Width="1796">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="27*"/>
+            <ColumnDefinition Width="1769*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="297*"/>
+            <RowDefinition Height="304*"/>
+        </Grid.RowDefinitions>
+        <StackPanel 
+            Orientation="Horizontal" 
+            Grid.Row="0" Margin="10,4,1080,10" Grid.RowSpan="2" Grid.ColumnSpan="2">
+            <TextBlock Width="104" Height="539" 
+                ><Run Language="ru-ru" Text="Оплата"/></TextBlock>
+            <TextBlock Width="121" 
+                ><Run Language="ru-ru" Text="Риелтор"/></TextBlock>
+            <TextBlock Height="579" Width="130" 
+                ><Run Text="Коне"/><Run Language="ru-ru" Text="ц сделки"/></TextBlock>
+
+        </StackPanel>
+        <ListBox 
+            x:Name="List" Margin="18,34,755,274" Height="NaN" Width="NaN" RenderTransformOrigin="0.5,0.5" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ListBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.348"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ListBox.RenderTransform>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Grid.Column="0"
+                            Text="{Binding Routee.Name}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Humann1.Full_name}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="2"
+                            Text="{Binding Hotell1.Name}" 
+                            FontSize="16" />
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Добавить" Margin="41,10,0,238" Click="Button_Click" HorizontalAlignment="Left" Width="94" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Изменить" Margin="295,14,1392,233" Click="Button_Click_1" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="Удалить" Margin="587,13,1088,236" Click="Button_Click_2" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.Row="1">
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="-0.239"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="-0.706"/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <ListBox 
+            x:Name="List2" Margin="815,144,650,60" Height="NaN" Width="NaN" SelectionChanged="List2_SelectionChanged" Grid.Row="1" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Grid.Column="0"
+                            Text="{Binding  Id }" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Name}" 
+                            FontSize="16" />
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox 
+            x:Name="List3" Margin="26,141,1466,63" Height="NaN" Width="NaN" SelectionChanged="List2_SelectionChanged" Grid.Row="1" Grid.ColumnSpan="2">
+            <ListBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.348"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ListBox.RenderTransform>
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="120"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Grid.Column="0"
+                            Text="{Binding Id}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Name}" 
+                            FontSize="16" />
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox 
+            x:Name="List4" Margin="1263,160,73,64" Height="NaN" Width="NaN" SelectionChanged="List2_SelectionChanged" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Grid.Column="0"
+                            Text="{Binding Id}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Full_name}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="2"
+                            Text="{Binding Age}" 
+                            FontSize="16" />
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox 
+            x:Name="List5" Margin="1263,66,73,158" Height="NaN" Width="NaN" SelectionChanged="List2_SelectionChanged" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Grid.Column="0"
+                            Text="{Binding Id}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Name}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="2"
+                            Text="{Binding Countryy.Name}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="3"
+                            Text="{Binding Cityy.Name}" 
+                            FontSize="16" />
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox 
+            x:Name="List6" Margin="1263,10,73,219" Height="NaN" Width="NaN" SelectionChanged="List2_SelectionChanged" Grid.Column="1" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80"/>
+                            <ColumnDefinition Width="120"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Grid.Column="0"
+                            Text="{Binding Id}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Name}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="2"
+                            Text="{Binding Servicce.Name}" 
+                            FontSize="16" />
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox 
+            x:Name="List7" Margin="1263,139,73,83" Height="NaN" Width="NaN" SelectionChanged="List2_SelectionChanged" Grid.Row="1" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="120"/>
+
+                        </Grid.ColumnDefinitions>
+                        <TextBlock 
+                            Grid.Column="0"
+                            Text="{Binding Id}" 
+                            FontSize="16" />
+                        <TextBlock 
+                            Grid.Column="1"
+                            Text="{Binding Name}" 
+                            FontSize="16" />
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBlock TextWrapping="Wrap" Margin="1263,43,279,212" Grid.Column="1"><Run Language="ru-ru" Text="Конец сделки"/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="815,119,737,119" Grid.Row="1" Grid.Column="1"><Run Language="ru-ru" Text="Сделка"/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="0,121,1494,112" Grid.Row="1" Focusable="True" Grid.Column="1"><Run Language="ru-ru" Text="Тип недвижимости"/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="1263,258,231,258" Grid.Column="1" Grid.RowSpan="2"><Run Language="ru-ru" Text="Оплата"/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="1263,112,257,135" Grid.Row="1" Grid.Column="1"><Run Language="ru-ru" Text="Сделки"/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="1263,136,423,87" Grid.Column="1"><Run Language="ru-ru" Text="Риелторы"/></TextBlock>
+        <Button Content="+" Margin="0,217,1687,29" Click="Button_Click_3" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="+" Margin="733,148,975,60" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="+" Margin="1195,144,532,83" Click="Button_Click_4" Grid.Row="1" Grid.Column="1" RenderTransformOrigin="1.131,0.856"/>
+        <Button Content="+" Margin="1194,10,532,219" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="+" Margin="1194,66,532,158" Grid.Column="1"/>
+        <Button Content="+" Margin="1194,161,532,64" Grid.Column="1"/>
+        <Button Content="Изменить" Margin="87,217,1580,29" Grid.Row="1" Grid.Column="1"/>
+        <Button Content="удолить" Margin="194,217,1473,29" Grid.Row="1" Click="Button_Click_5" Grid.Column="1"/>
+
+    </Grid>
+</Window>

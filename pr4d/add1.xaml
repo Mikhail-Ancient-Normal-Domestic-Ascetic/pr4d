@@ -1,0 +1,40 @@
+﻿<Window x:Class="pr4d.add1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:pr4d"
+        mc:Ignorable="d"
+        Title="add1" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Оплата" />
+        <TextBlock Text="Конец сделки" Grid.Row="1" />
+        <TextBlock Text="Риелтор" Grid.Row="2" />
+
+
+        <TextBox Text="{Binding Routee.Name}" Grid.Column="1" />
+        <TextBox Text="{Binding Hotell1.Name}" Grid.Column="1" Grid.Row="1" />
+        <TextBox Text="{Binding Humann1.Full_Name}" Grid.Column="1" Grid.Row="2" />
+        <StackPanel 
+            HorizontalAlignment="Center" 
+            Orientation="Horizontal" 
+            Grid.Row="6" 
+            Grid.Column="1">
+
+            <Button IsDefault="True" Content="Ok" Click="Click1121213" Width="68" />
+            <Button IsCancel="True" Content="Отмена" Width="68" />
+        </StackPanel>
+    </Grid>
+</Window>
